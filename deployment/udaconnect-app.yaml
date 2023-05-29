@@ -31,7 +31,7 @@ spec:
         service: udaconnect-app
     spec:
       containers:
-      - image: ibramreda/udaconnect-app:v1.1
+      - image: ibramreda/udaconnect-app:v1.2
         name: udaconnect-app
         imagePullPolicy: Always
         resources:

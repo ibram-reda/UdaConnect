@@ -1,0 +1,168 @@
+openapi: 3.0.3
+info:
+  title: UdaConnect - OpenAPI 
+  description: |-
+    This is the api for microservices Udaconnect-persons and udaconect-Connections
+  version: 1.x
+servers:
+  - url: http://localhost:30002/
+  - url: http://localhost:30003/
+tags:
+  - name: persons
+    description: work on port 30002
+    externalDocs:
+      description: find more
+      url: http://localhost:30002/
+  - name: Connections
+    description: work on port 30003
+    externalDocs:
+      description: Find out more 
+      url: http://localhost:30003/
+
+paths:
+  /api/persons:
+    get:
+      tags:
+      - persons
+      summary: get list of persons
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfPersons'
+      operationId: get_persons_resource
+    post:
+      tags:
+      - persons
+      summary: add new person
+      requestBody:
+        description: the new Person Data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Person'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+      operationId: post_persons_resource
+      
+      
+  /api/persons/{person_id}:
+    parameters:
+    - in: path
+      schema:
+        type: string
+        example: 1
+      description: Unique ID for a given Person
+      name: person_id
+      required: true
+    get:
+      tags:
+      - persons
+      summary: get person details
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+      operationId: get_person_resource
+      
+  /api/persons/{person_id}/connection:
+    summary: connecion on port 30003
+    description: Dont't froget to change the server
+    parameters:
+    - in: query
+      schema:
+        type: integer
+        example: 5
+      description: Proximity to a given user in meters
+      name: distance
+    - in: query
+      description: Upper bound of date range
+      name: end_date
+      schema:
+        type: string
+        example: 2020-12-30
+    - in: query
+      description: Lower bound of date range
+      name: start_date
+      schema:
+        type: string
+        example: 2020-01-01
+    - name: person_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        example: 1
+    get:
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connection'
+      operationId: get_connection_data_resource
+      tags:
+      - Connections
+
+  
+components:
+  schemas:
+    Person:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        first_name:
+          type: string
+          example: ibram
+        last_name:
+          type: string
+          example: Reda
+        company_name:
+          type: string
+          example: microsoft
+    ArrayOfPersons:
+      type: array
+      items:
+        $ref: '#/components/schemas/Person'
+      
+    Location:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 100
+        person_id:
+          type: integer
+          format: int64
+          example: 10
+        longitude:
+          type: string
+          example: 122.290524
+        latitude:
+          type: string
+          example: 37.553441
+          
+    connection:
+      type: object
+      properties:
+        person:
+          $ref: '#/components/schemas/Person'
+        location:
+          $ref: '#/components/schemas/Location'
+
+   

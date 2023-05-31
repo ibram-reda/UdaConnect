@@ -1,0 +1,157 @@
+{
+    "collection": {
+        "info": {
+            "_postman_id": "778ad670-7821-48b5-9751-32ab15f1571e",
+            "name": "UdaConnect",
+            "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+            "updatedAt": "2023-05-31T17:42:32.000Z",
+            "uid": "27731953-778ad670-7821-48b5-9751-32ab15f1571e"
+        },
+        "item": [
+            {
+                "name": "Persons",
+                "item": [
+                    {
+                        "name": "get all persons",
+                        "id": "ae2a943b-7740-4313-b887-34330b56c3e3",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                                "raw": "http://localhost:30002/api/persons",
+                                "protocol": "http",
+                                "host": [
+                                    "localhost"
+                                ],
+                                "port": "30002",
+                                "path": [
+                                    "api",
+                                    "persons"
+                                ]
+                            }
+                        },
+                        "response": [],
+                        "uid": "27731953-ae2a943b-7740-4313-b887-34330b56c3e3"
+                    },
+                    {
+                        "name": "Add new person",
+                        "id": "9253513c-baee-4378-8ff4-8b4b364b0e50",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "POST",
+                            "header": [],
+                            "body": {
+                                "mode": "raw",
+                                "raw": "{\r\n  \"id\": 0,\r\n  \"first_name\": \"ibram\",\r\n  \"last_name\": \"Reda\",\r\n  \"company_name\": \"microsoft\"\r\n}",
+                                "options": {
+                                    "raw": {
+                                        "language": "json"
+                                    }
+                                }
+                            },
+                            "url": {
+                                "raw": "http://localhost:30002/api/persons",
+                                "protocol": "http",
+                                "host": [
+                                    "localhost"
+                                ],
+                                "port": "30002",
+                                "path": [
+                                    "api",
+                                    "persons"
+                                ]
+                            }
+                        },
+                        "response": [],
+                        "uid": "27731953-9253513c-baee-4378-8ff4-8b4b364b0e50"
+                    },
+                    {
+                        "name": "get person details",
+                        "id": "97d183a3-ccc7-4c70-88a0-a98ca0201d64",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                                "raw": "http://localhost:30002/api/persons/{{person_id}}",
+                                "protocol": "http",
+                                "host": [
+                                    "localhost"
+                                ],
+                                "port": "30002",
+                                "path": [
+                                    "api",
+                                    "persons",
+                                    "{{person_id}}"
+                                ]
+                            }
+                        },
+                        "response": [],
+                        "uid": "27731953-97d183a3-ccc7-4c70-88a0-a98ca0201d64"
+                    }
+                ],
+                "id": "e657f2ae-f637-4fb4-b436-2c4218bbf96e",
+                "uid": "27731953-e657f2ae-f637-4fb4-b436-2c4218bbf96e"
+            },
+            {
+                "name": "Connections",
+                "item": [
+                    {
+                        "name": "Get connections for person",
+                        "id": "00351be7-962b-4bae-bbd1-8ebce5a5690b",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                                "raw": "http://localhost:30003/api/persons/{{person_id}}/connection?distance=5&start_date=2020-01-01&end_date=2020-12-30",
+                                "protocol": "http",
+                                "host": [
+                                    "localhost"
+                                ],
+                                "port": "30003",
+                                "path": [
+                                    "api",
+                                    "persons",
+                                    "{{person_id}}",
+                                    "connection"
+                                ],
+                                "query": [
+                                    {
+                                        "key": "distance",
+                                        "value": "5",
+                                        "description": "Proximity to a given user in meters"
+                                    },
+                                    {
+                                        "key": "start_date",
+                                        "value": "2020-01-01",
+                                        "description": "Upper bound of date range"
+                                    },
+                                    {
+                                        "key": "end_date",
+                                        "value": "2020-12-30",
+                                        "description": "Lower bound of date range",
+                                        "type": "text"
+                                    }
+                                ]
+                            }
+                        },
+                        "response": [],
+                        "uid": "27731953-00351be7-962b-4bae-bbd1-8ebce5a5690b"
+                    }
+                ],
+                "id": "3465538b-c6a6-4959-83d7-ac2f116e63fe",
+                "uid": "27731953-3465538b-c6a6-4959-83d7-ac2f116e63fe"
+            }
+        ]
+    }
+}
